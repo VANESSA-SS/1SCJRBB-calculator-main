@@ -43,7 +43,7 @@ const calculate = () => {
     let actualNumber = display.textContent;
     actualNumber = actualNumber.replace(",", ".");
     previousNumber = previousNumber.replace(",", ".");
-    const result = eval(`${previousNumber}${operator}${actualNumber}`); //template string, utilizando craze
+    const result = eval(`(${previousNumber})${operator}(${actualNumber})`); //template string, utilizando craze
     let resultText = result.toString(); 
     resultText = resultText.replace(".", ",");
     newNumber = true;
@@ -75,14 +75,10 @@ document.querySelector("#backspace").addEventListener("click", removeLastNumber)
 const invertSignal = () => {
     newNumber = true;
     let actualNumber = display.textContent
-    console.log(actualNumber);
     actualNumber = actualNumber.replace(",",".");
-    console.log(actualNumber);
     actualNumber = actualNumber * -1 
     actualNumber = actualNumber.toString();
-    console.log(actualNumber);
     actualNumber = actualNumber.replace(".", ",");
-    console.log(actualNumber);
     updateDisplay(actualNumber);
 }
 
