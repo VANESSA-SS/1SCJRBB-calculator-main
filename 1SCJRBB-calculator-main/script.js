@@ -74,21 +74,32 @@ document.querySelector("#backspace").addEventListener("click", removeLastNumber)
 
 const invertSignal = () => {
     newNumber = true;
-    updateDisplay(display.textContent * -1);
+    let actualNumber = display.textContent
+    console.log(actualNumber);
+    actualNumber = actualNumber.replace(",",".");
+    console.log(actualNumber);
+    actualNumber = actualNumber * -1 
+    actualNumber = actualNumber.toString();
+    console.log(actualNumber);
+    actualNumber = actualNumber.replace(".", ",");
+    console.log(actualNumber);
+    updateDisplay(actualNumber);
 }
 
 document.querySelector("#inverter").addEventListener("click", invertSignal);
 
 const insertDecimal = (event) => {
     let actualNumber = display.textContent;
-    if (!(actualNumber.includes(','))){
-        if (actualNumber == ""){
-            actualNumber = actualNumber.concat("0,");
-        }else{
+    if (newNumber){
+        actualNumber = "0,";
+        newNumber = false
+    }else{
+        if (!(actualNumber.includes(','))){       
             actualNumber = actualNumber.concat(",");
-        } 
-        display.textContent = actualNumber;
-    }
-}
+        }
+    } 
+     display.textContent = actualNumber;
+ }
+
 
 document.querySelector("#decimal").addEventListener("click", insertDecimal);
